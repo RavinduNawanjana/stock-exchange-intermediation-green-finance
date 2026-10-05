@@ -1,0 +1,34 @@
+---
+title: "Robustness and sensitivity"
+---
+
+```{r}
+#| include: false
+read_table <- function(name) utils::read.csv(file.path("outputs/tables", name), check.names = FALSE)
+```
+
+## Bootstrap
+
+The OLS model is resampled 2,000 times with a fixed seed. Percentile intervals provide a distributional sensitivity check rather than a new estimand.
+
+```{r}
+knitr::kable(read_table("bootstrap_ols_2000.csv"), digits = 4)
+```
+
+## Influence diagnostics
+
+```{r}
+knitr::kable(read_table("influence_summary.csv"))
+```
+
+Individual-level influence diagnostics are generated under `outputs/restricted/` and are intentionally omitted from the rendered public-facing report.
+
+## Chi-square sensitivity
+
+The Figshare package does not document the exact SPSS crosstab definitions. The repository therefore does **not** claim to reconstruct an unspecified original chi-square table. Instead, it exposes one reproducible sensitivity definition: rounded construct mean (1–5) crossed with rounded Green Finance Adoption mean (1–5).
+
+```{r}
+knitr::kable(read_table("chi_square_construct_sensitivity.csv"), digits = 4)
+```
+
+Expected cell counts should be inspected before interpreting asymptotic p-values. Item-level sensitivity outputs include Benjamini-Hochberg FDR adjustment.

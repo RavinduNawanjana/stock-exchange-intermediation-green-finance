@@ -1,0 +1,14 @@
+---
+title: "Interpretation limits"
+---
+
+The repository intentionally keeps the analytical claims narrower than the codebase could technically support.
+
+- The survey is cross-sectional; temporal direction and causality cannot be established.
+- Composite scores are means of ordinal Likert items and therefore rely on an approximate interval-scale interpretation.
+- The 103 respondents should not automatically be treated as a probability sample representing every bank, exchange, country, or emerging market.
+- Correlations and OLS coefficients concern respondent perceptions, not observed bank balance-sheet allocations, green bond issuance volumes, financed emissions, or realised environmental outcomes.
+- EFA is exploratory. The repository does not claim CFA, measurement invariance, SEM, mediation, or moderation.
+- CR/AVE outputs are EFA-derived descriptive diagnostics and not confirmatory measurement-model estimates.
+- Chi-square results are explicitly labelled sensitivity analyses because the exact original SPSS crosstab definitions are not documented in the Figshare README.
+- The SSRN paper is not included, edited, or numerically used as a benchmark in this repository.

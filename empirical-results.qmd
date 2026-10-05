@@ -1,0 +1,60 @@
+---
+title: "Empirical results"
+---
+
+```{r}
+#| include: false
+read_table <- function(name) utils::read.csv(file.path("outputs/tables", name), check.names = FALSE)
+```
+
+## Input validation
+
+```{r}
+knitr::kable(read_table("input_validation.csv"))
+```
+
+## Construct descriptives
+
+```{r}
+knitr::kable(read_table("construct_descriptives.csv"), digits = 3)
+```
+
+![](figures/construct_distributions.png){fig-alt="Boxplots of five composite scores generated from Figshare raw survey data." width=100%}
+
+![](figures/construct_means.png){fig-alt="Observed sample means for the five composite scales." width=90%}
+
+## Reliability
+
+```{r}
+knitr::kable(read_table("reliability.csv"), digits = 3)
+```
+
+![](figures/reliability_alpha.png){fig-alt="Cronbach alpha by documented construct." width=90%}
+
+Alpha is an internal-consistency statistic. It is not, by itself, evidence of construct validity or unidimensionality.
+
+## Associations
+
+```{r}
+knitr::kable(read_table("correlations.csv"), digits = 4)
+```
+
+![](figures/correlation_heatmap.png){fig-alt="Pearson correlation heatmap for the five construct scores." width=90%}
+
+## Multiple regression
+
+```{r}
+knitr::kable(read_table("ols_coefficients.csv"), digits = 4)
+```
+
+```{r}
+knitr::kable(read_table("model_summary.csv"), digits = 4)
+```
+
+```{r}
+knitr::kable(read_table("vif.csv"), digits = 3)
+```
+
+![](figures/standardized_ols.png){fig-alt="Standardized OLS coefficients for four predictors of Green Finance Adoption." width=90%}
+
+These estimates describe cross-sectional partial associations among respondent perception scores. They are not causal estimates.

@@ -1,0 +1,40 @@
+---
+title: "Exploratory factor and validity diagnostics"
+---
+
+```{r}
+#| include: false
+read_table <- function(name) utils::read.csv(file.path("outputs/tables", name), check.names = FALSE)
+```
+
+## KMO and Bartlett prechecks
+
+```{r}
+knitr::kable(read_table("efa_prechecks.csv"), digits = 4)
+```
+
+## Scree information
+
+![](figures/scree_plot.png){fig-alt="Scree plot of eigenvalues from the 30-item correlation matrix." width=90%}
+
+```{r}
+head_vals <- read_table("correlation_eigenvalues.csv")
+knitr::kable(head_vals[1:10, ], digits = 3)
+```
+
+## Five-factor principal-axis EFA
+
+The repository fits five factors because the Figshare codebook documents five conceptual scales. This is an exploratory diagnostic, not confirmatory factor analysis.
+
+```{r}
+loadings <- read_table("efa_5factor_pattern_loadings.csv")
+knitr::kable(loadings, digits = 3)
+```
+
+## EFA-derived CR and AVE
+
+```{r}
+knitr::kable(read_table("efa_derived_cr_ave.csv"), digits = 3)
+```
+
+These CR/AVE values are derived from single-factor exploratory loadings within each documented scale. They are provided as transparent descriptive diagnostics and **must not be represented as CFA/SEM measurement-model estimates**.

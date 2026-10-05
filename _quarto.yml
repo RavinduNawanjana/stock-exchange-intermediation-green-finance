@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - methods.qmd
+    - empirical-results.qmd
+    - factor-validity.qmd
+    - robustness.qmd
+    - spss-reconciliation.qmd
+    - limitations.qmd
+
+website:
+  title: "Stock Exchanges and Green Finance Adoption"
+  navbar:
+    left:
+      - text: "Overview"
+        href: index.qmd
+      - text: "Methods"
+        href: methods.qmd
+      - text: "Empirical results"
+        href: empirical-results.qmd
+      - text: "Factor validity"
+        href: factor-validity.qmd
+      - text: "Robustness"
+        href: robustness.qmd
+      - text: "SPSS reconciliation"
+        href: spss-reconciliation.qmd
+      - text: "Limits"
+        href: limitations.qmd
+  page-footer:
+    left: "R-first reproducible research companion · Figshare-source analysis"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    number-sections: true
+    code-fold: true
+    code-summary: "Show reproducible code"
+    fig-align: center
+    html-math-method: mathjax
+
+execute:
+  freeze: false
+  warning: false
+  message: false

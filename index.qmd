@@ -1,0 +1,28 @@
+---
+title: "Market Intermediaries and the Green Transition"
+subtitle: "Figshare-only reproducible survey analysis"
+---
+
+## Purpose
+
+This site is a computational companion to the study **“Market Intermediaries and the Green Transition: Evidence on Stock Exchanges and Bank Green Finance Adoption in Emerging Markets.”** It is built exclusively from the associated Figshare supplementary package.
+
+The manuscript itself is **not included** and is **not altered** by this repository. Numerical outputs displayed here are recomputed from the Figshare data, not copied from a paper.
+
+## Source data
+
+The package documents 103 respondents and 30 five-point Likert items. The item map is:
+
+- V1–V7: Policy and Regulatory Alignment
+- V8–V14: Market Mechanisms
+- V15–V21: Market Awareness
+- V22–V28: Market Incentives
+- V29–V30: Green Finance Adoption
+
+## Reproducibility layers
+
+**R** is the primary statistical engine. **Quarto** is the reporting layer. **Python/Jupyter** independently audits the Excel source and reconciles it against the SPSS working file. The original `.sav` and `.spv` are preserved without modification.
+
+## Research boundary
+
+The data are cross-sectional practitioner responses. All regression and correlation outputs are associational. No causal effect, representative population estimate, CFA/SEM result, or realised environmental outcome is inferred from this repository.

@@ -1,0 +1,35 @@
+---
+title: "Methods and reproducibility"
+---
+
+## Source-of-truth rule
+
+All quantitative outputs are generated from `data/original/Dataset_S1_Raw_Survey_Data.xlsx`. The SPSS `.sav` is used only to verify that the raw items and documented composite scores are aligned with the Excel source. The `.spv` is retained as immutable source evidence but is not parsed or rewritten by this workflow.
+
+## Construct scoring
+
+Each construct is scored as the unweighted mean of its documented items. There is no undocumented reverse scoring, reweighting, row deletion, or manuscript-target calibration.
+
+## Statistical workflow
+
+The primary R pipeline performs:
+
+1. input and codebook validation;
+2. item and construct descriptives;
+3. raw-score Cronbach alpha;
+4. Pearson and Spearman correlations;
+5. four-predictor ordinary least squares regression;
+6. standardized coefficients, VIF and influence diagnostics;
+7. a deterministic 2,000-resample nonparametric bootstrap;
+8. KMO and Bartlett prechecks;
+9. five-factor principal-axis EFA with oblimin rotation;
+10. EFA-derived CR/AVE diagnostics, explicitly **not CFA estimates**;
+11. transparent chi-square sensitivity analyses;
+12. direct Excel/SPSS `.sav` reconciliation;
+13. figures generated only from the Figshare survey data.
+
+## Independent audit
+
+The Jupyter/Python layer reads the source Excel separately, validates the 103 × 30 structure and Likert range, reconstructs the five scale scores, independently calculates headline statistics, and compares raw items and SPSS composite columns against the `.sav` file.
+
+The Python layer is intentionally narrower than the R layer: its job is independent verification, not duplication of every research analysis.
