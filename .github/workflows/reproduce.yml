@@ -1,0 +1,98 @@
+name: Reproduce Figshare survey analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: reproduce-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python-audit:
+    name: Independent Python and Jupyter audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preserved Figshare source files
+        run: sha256sum -c SOURCE_MANIFEST.sha256
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: 'pip'
+      - name: Install Python dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Run independent source audit
+        run: python python/run_audit.py
+      - name: Run Python tests
+        run: pytest -q
+      - name: Execute Jupyter audit notebook
+        run: |
+          jupyter nbconvert --to notebook --execute notebooks/independent_python_audit.ipynb \
+            --output independent_python_audit_executed.ipynb \
+            --ExecutePreprocessor.timeout=300
+      - name: Record Python environment
+        if: always()
+        run: |
+          mkdir -p outputs/python
+          python --version > outputs/python/python_version.txt
+          python -m pip freeze > outputs/python/requirements_resolved.txt
+      - name: Upload Python audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-jupyter-audit
+          path: |
+            outputs/python/
+            notebooks/independent_python_audit_executed.ipynb
+          retention-days: 30
+
+  r-quarto:
+    name: R statistical reproduction and Quarto render
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify preserved Figshare source files
+        run: sha256sum -c SOURCE_MANIFEST.sha256
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: '4.4.3'
+          use-public-rspm: true
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::readxl
+            any::haven
+            any::ggplot2
+            any::psych
+            any::GPArotation
+            any::boot
+            any::knitr
+            any::rmarkdown
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - name: Run full R analysis and tests
+        run: Rscript analysis/master.R
+      - name: Render Quarto site
+        run: quarto render
+      - name: Create run-specific integrity manifest
+        shell: bash
+        run: |
+          mkdir -p outputs/integrity
+          git ls-files -z | sort -z | xargs -0 sha256sum > outputs/integrity/TRACKED_FILES.sha256
+      - name: Upload R and Quarto evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: r-quarto-reproduction
+          path: |
+            _site/
+            outputs/tables/
+            outputs/integrity/
+            outputs/session_info.txt
+            figures/
+          retention-days: 30

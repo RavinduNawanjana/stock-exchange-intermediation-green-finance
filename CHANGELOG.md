@@ -1,5 +1,14 @@
 # Changelog
 
+## v2.0.1 — 2026-10-06
+
+- Restored the hidden GitHub Actions workflow and `.gitignore` omitted by browser upload.
+- Corrected repository metadata to `stock-exchange-intermediation-green-finance`.
+- Added source-checksum verification to both CI jobs.
+- Removed generated Python outputs and interpreter caches from version control.
+- Renamed the RStudio project file to match the repository.
+- Added resolved Python environment capture to CI artifacts.
+
 ## v2.0.0 — 2026-10-06
 
 - Rebuilt repository around the Figshare supplementary package as the sole quantitative evidence base.

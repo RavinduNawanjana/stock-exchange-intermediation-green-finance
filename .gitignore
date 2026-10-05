@@ -1,0 +1,27 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+
+# Quarto
+.quarto/
+_site/
+
+# Generated analysis outputs
+outputs/
+figures/*.png
+figures/*.pdf
+
+# Executed notebooks are CI artifacts, not source
+notebooks/*_executed.ipynb
+
+# Python / test caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
