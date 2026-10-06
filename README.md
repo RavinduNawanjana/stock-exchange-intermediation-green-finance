@@ -76,7 +76,7 @@ This is a cross-sectional survey of 103 financial practitioners. The repository 
 
 ## Start here
 
-- [`index.qmd`](index.qmd) — research companion overview
+- [`index.qmd`](index.qmd) — project overview
 - [`methods.qmd`](methods.qmd) — data, scoring, estimation and reproducibility boundaries
 - [`empirical-results.qmd`](empirical-results.qmd) — descriptive, reliability, correlation and regression outputs
 - [`factor-validity.qmd`](factor-validity.qmd) — KMO/Bartlett, EFA and EFA-derived CR/AVE diagnostics
