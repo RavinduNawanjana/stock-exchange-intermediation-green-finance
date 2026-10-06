@@ -2,7 +2,7 @@
 
 **Evidence on Stock Exchanges and Bank Green Finance Adoption in Emerging Markets**
 
-R-first reproducible research companion based **only on the Figshare supplementary data package** associated with the study. The repository does **not** include, edit, rewrite, or numerically benchmark against the SSRN manuscript PDF.
+R-first reproducible analysis based **only on the Figshare supplementary data package** associated with the study. The repository does **not** include, edit, rewrite, or numerically benchmark against the SSRN manuscript PDF.
 
 ## Reproducibility design
 
@@ -16,7 +16,7 @@ The source of truth is the Figshare package:
 The analytical architecture is deliberately layered:
 
 1. **R** is the primary statistical implementation: validation, scoring, reliability, descriptives, Pearson/Spearman correlations, OLS, VIF and influence diagnostics, deterministic bootstrap, KMO/Bartlett diagnostics, exploratory factor analysis, EFA-derived CR/AVE diagnostics, chi-square sensitivity analyses, SPSS `.sav` reconciliation, and all analytical figures.
-2. **Quarto** presents the methods, results, robustness checks, factor-validity diagnostics, SPSS reconciliation, and interpretation limits as a reproducible research companion.
+2. **Quarto** presents the methods, results, robustness checks, factor-validity diagnostics, SPSS reconciliation and interpretation limits.
 3. **Python/Jupyter** provides an independent audit of the XLSX source, range/missingness checks, construct scoring, headline statistics, and direct XLSX-to-SPSS `.sav` reconciliation when `pyreadstat` is available.
 4. **SPSS** is preserved as source evidence. The repository never rewrites the `.sav` or `.spv` files.
 5. **GitHub Actions** executes the Python/Jupyter and R/Quarto workflows in clean environments and uploads run artifacts.
@@ -87,4 +87,4 @@ This is a cross-sectional survey of 103 financial practitioners. The repository 
 
 ## Publication note
 
-The repository is a computational companion, not a replacement for the associated paper. The paper itself is not redistributed here, and its text has not been edited or modified in preparing this repository.
+The associated paper is not redistributed in this repository. The repository contains the data-based analytical workflow and supporting documentation.
